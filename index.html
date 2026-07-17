@@ -13,24 +13,6 @@
           <h1>五线谱音符练习</h1>
           <p id="promptText">看谱、听音，弹出正确的钢琴键。</p>
         </div>
-        <div class="stats" aria-label="当前成绩">
-          <div>
-            <span id="progressLabel">进度</span>
-            <strong id="progressText">0/10</strong>
-          </div>
-          <div>
-            <span id="timerLabel">耗时</span>
-            <strong id="timerText">0秒</strong>
-          </div>
-          <div>
-            <span>正确</span>
-            <strong id="correctText">0</strong>
-          </div>
-          <div>
-            <span>正确率</span>
-            <strong id="accuracyText">0%</strong>
-          </div>
-        </div>
       </section>
 
       <section class="settings" aria-label="练习设置">
@@ -91,7 +73,6 @@
 
         <div class="setting-actions">
           <button id="startBtn" type="button">开始练习</button>
-          <button id="resetBtn" type="button">重新开始</button>
         </div>
       </section>
 
@@ -102,12 +83,31 @@
         </div>
 
         <div class="answer-panel">
+          <div class="stats" aria-label="当前成绩">
+            <div>
+              <span id="progressLabel">进度</span>
+              <strong id="progressText">0/10</strong>
+            </div>
+            <div>
+              <span id="timerLabel">耗时</span>
+              <strong id="timerText">0秒</strong>
+            </div>
+            <div>
+              <span>正确</span>
+              <strong id="correctText">0</strong>
+            </div>
+            <div>
+              <span>正确率</span>
+              <strong id="accuracyText">0%</strong>
+            </div>
+          </div>
           <div class="message" id="message">选择设置后，点“开始练习”。</div>
           <div class="result-box" id="resultBox" hidden></div>
           <div class="controls">
             <button id="playNote" type="button" title="播放当前音">♪ 听当前音</button>
             <button id="showAnswer" type="button">查看答案</button>
             <button id="nextQuestion" type="button">下一题</button>
+            <button id="resetBtn" type="button">重新开始</button>
           </div>
         </div>
       </section>

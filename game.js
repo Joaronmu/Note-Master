@@ -154,22 +154,29 @@ function drawStaff(note, showNote) {
   staff.replaceChildren();
   staff.append(svg("rect", { x: 0, y: 0, width: 820, height: 680, rx: 18, fill: "#fffdf8" }));
 
-  [8, 6, 4, 2, 0].forEach((step) => {
-    staff.append(svg("line", {
-      x1: 88, y1: yForStep(step), x2: 724, y2: yForStep(step),
-      stroke: "#202124", "stroke-width": 3, "stroke-linecap": "round"
-    }));
-  });
-
   if (!showNote || !note) {
+    const icon = svg("text", {
+      x: 410, y: 292, "text-anchor": "middle",
+      "font-size": 76, "font-weight": 800, fill: "#0f7a7a"
+    });
+    icon.textContent = "♪";
+    staff.append(icon);
+
     const text = svg("text", {
-      x: 410, y: 340, "text-anchor": "middle",
+      x: 410, y: 356, "text-anchor": "middle",
       "font-size": 28, "font-weight": 800, fill: "#69707a"
     });
     text.textContent = "听音后在 88 键钢琴上选择";
     staff.append(text);
     return;
   }
+
+  [8, 6, 4, 2, 0].forEach((step) => {
+    staff.append(svg("line", {
+      x1: 88, y1: yForStep(step), x2: 724, y2: yForStep(step),
+      stroke: "#202124", "stroke-width": 3, "stroke-linecap": "round"
+    }));
+  });
 
   const clef = svg("text", {
     x: note.clef === "bass" ? 130 : 118,

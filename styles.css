@@ -61,8 +61,8 @@ button:disabled {
 }
 
 .topbar {
-  display: grid;
-  grid-template-columns: minmax(280px, 1fr) minmax(420px, 0.9fr);
+  display: flex;
+  justify-content: space-between;
   gap: 14px;
   align-items: end;
   margin-bottom: 8px;
@@ -82,7 +82,7 @@ p {
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(80px, 1fr));
+  grid-template-columns: repeat(2, minmax(80px, 1fr));
   gap: 8px;
 }
 
@@ -100,7 +100,7 @@ p {
 
 .stats div {
   border-radius: 8px;
-  padding: 7px 10px;
+  padding: 8px 10px;
 }
 
 .stats span,
@@ -113,7 +113,7 @@ p {
 }
 
 .stats strong {
-  font-size: 1.12rem;
+  font-size: 1.2rem;
 }
 
 .settings {
@@ -232,7 +232,7 @@ p {
   font-weight: 800;
 }
 
-.setting-actions button:nth-child(2),
+.controls button:last-child,
 .controls button:first-child,
 #clearHistory {
   background: var(--ink);
@@ -283,12 +283,13 @@ p {
   padding: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 10px;
   min-height: var(--staff-panel-height);
 }
 
 .message {
-  min-height: 104px;
+  min-height: 88px;
   padding: 10px 12px;
   border-radius: 8px;
   background: #f4f1ea;
@@ -334,8 +335,8 @@ p {
 
 .controls {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .piano-wrap {
@@ -726,6 +727,14 @@ body.ipad-air .history-list {
     min-height: 80px;
   }
 
+  .answer-panel .stats {
+    gap: 6px;
+  }
+
+  .answer-panel .stats div {
+    padding: 6px 8px;
+  }
+
   .piano-wrap,
   .history-wrap {
     margin-top: 6px;
@@ -777,7 +786,6 @@ body.ipad-air .history-list {
     width: min(calc(100% - 20px), 760px);
   }
 
-  .topbar,
   .settings,
   .stage {
     grid-template-columns: 1fr;
@@ -785,10 +793,6 @@ body.ipad-air .history-list {
 
   .stats {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .setting-actions {
-    grid-template-columns: 1fr 1fr;
   }
 
   .staff-card,
@@ -854,8 +858,7 @@ body.ipad-air .history-list {
   }
 
   .segmented.three,
-  .controls,
-  .setting-actions {
+  .controls {
     grid-template-columns: 1fr;
   }
 
