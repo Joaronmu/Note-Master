@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>五线谱音符练习</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="topbar" aria-label="游戏信息">
+        <div>
+          <h1>五线谱音符练习</h1>
+          <p id="promptText">看谱、听音，弹出正确的钢琴键。</p>
+        </div>
+        <div class="stats" aria-label="当前成绩">
+          <div>
+            <span id="progressLabel">进度</span>
+            <strong id="progressText">0/10</strong>
+          </div>
+          <div>
+            <span id="timerLabel">耗时</span>
+            <strong id="timerText">0秒</strong>
+          </div>
+          <div>
+            <span>正确</span>
+            <strong id="correctText">0</strong>
+          </div>
+          <div>
+            <span>正确率</span>
+            <strong id="accuracyText">0%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings" aria-label="练习设置">
+        <div class="setting-group">
+          <div class="group-title">答题模式</div>
+          <div class="segmented">
+            <label>
+              <input type="radio" name="answerMode" value="count" checked>
+              <span>题数</span>
+            </label>
+            <label>
+              <input type="radio" name="answerMode" value="time">
+              <span>计时</span>
+            </label>
+          </div>
+          <label class="field" id="questionField">
+            <span>题目总数</span>
+            <select id="questionLimit"></select>
+          </label>
+          <label class="field" id="timeField">
+            <span>答题时长</span>
+            <select id="timeLimit"></select>
+          </label>
+        </div>
+
+        <div class="setting-group">
+          <div class="group-title">出题方式</div>
+          <div class="segmented three">
+            <label>
+              <input type="radio" name="promptMode" value="staff" checked>
+              <span>谱面</span>
+            </label>
+            <label>
+              <input type="radio" name="promptMode" value="sound">
+              <span>声音</span>
+            </label>
+            <label>
+              <input type="radio" name="promptMode" value="both">
+              <span>谱面+声音</span>
+            </label>
+          </div>
+          <div class="range-row" aria-label="组别范围">
+            <label class="field">
+              <span>起始组别</span>
+              <select id="groupStart"></select>
+            </label>
+            <label class="field">
+              <span>结束组别</span>
+              <select id="groupEnd"></select>
+            </label>
+          </div>
+          <label class="toggle">
+            <input id="autoNext" type="checkbox" checked>
+            <span>答对/答错后自动下一题</span>
+          </label>
+          <div class="key-help">方向键 ← → 移动琴键，Enter 或空格选择。</div>
+        </div>
+
+        <div class="setting-actions">
+          <button id="startBtn" type="button">开始练习</button>
+          <button id="resetBtn" type="button">重新开始</button>
+        </div>
+      </section>
+
+      <section class="stage" aria-label="题目区域">
+        <div class="staff-card">
+          <svg id="staff" viewBox="0 0 820 680" role="img" aria-label="五线谱音符题目"></svg>
+          <div class="question-chip" id="questionChip">准备开始</div>
+        </div>
+
+        <div class="answer-panel">
+          <div class="message" id="message">选择设置后，点“开始练习”。</div>
+          <div class="result-box" id="resultBox" hidden></div>
+          <div class="controls">
+            <button id="playNote" type="button" title="播放当前音">♪ 听当前音</button>
+            <button id="showAnswer" type="button">查看答案</button>
+            <button id="nextQuestion" type="button">下一题</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="piano-wrap" aria-label="钢琴键盘">
+        <div class="piano-head">
+          <div>
+            <div class="piano-hint" id="pianoHint">88 键钢琴：A0 到 C8。白键和黑键都可能是答案。</div>
+            <div class="selected-note" id="selectedNote">当前选择：A0 · La</div>
+          </div>
+          <button id="clearHistory" type="button">清空历史</button>
+        </div>
+        <div class="piano-scroll" id="pianoScroll">
+          <div class="piano" id="piano"></div>
+        </div>
+      </section>
+
+      <section class="history-wrap" aria-label="历史答题结果">
+        <div class="section-title">历史结果</div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" id="resultModal" hidden>
+      <section class="score-modal" role="dialog" aria-modal="true" aria-labelledby="modalGrade">
+        <div class="grade-badge" id="modalGrade">Super Star · 超级之星</div>
+        <h2 id="modalTitle">本轮成绩</h2>
+        <p id="modalComment">太棒了，继续保持！</p>
+        <div class="modal-score-grid">
+          <div>
+            <span>答对</span>
+            <strong id="modalCorrect">0</strong>
+          </div>
+          <div>
+            <span>答错</span>
+            <strong id="modalWrong">0</strong>
+          </div>
+          <div>
+            <span>正确率</span>
+            <strong id="modalPercent">0%</strong>
+          </div>
+          <div>
+            <span id="modalDetailLabel">耗时</span>
+            <strong id="modalDetail">0秒</strong>
+          </div>
+        </div>
+        <button id="closeModal" type="button">继续练习</button>
+      </section>
+    </div>
+
+    <script src="./game.js"></script>
+  </body>
+</html>
