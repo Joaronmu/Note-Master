@@ -178,21 +178,28 @@ function drawStaff(note, showNote, emptyState = "sound") {
     }));
   });
 
-  const clef = svg("text", {
-    x: note.clef === "bass" ? 130 : 118,
-    y: note.clef === "bass" ? 452 : 466,
-    "font-size": note.clef === "bass" ? 112 : 132,
-    "font-family": "Georgia, 'Times New Roman', serif",
-    fill: "#202124"
-  });
-  clef.textContent = note.clef === "bass" ? "𝄢" : "𝄞";
-  staff.append(clef);
+  drawClef(note.clef);
 
   const noteX = 462;
   const noteY = yForStep(note.step);
   drawLedgerLines(noteX, note.step);
   if (note.accidental) drawAccidental(noteX, noteY);
   drawNoteHead(noteX, noteY, note.step);
+}
+
+function drawClef(clefType) {
+  const isBass = clefType === "bass";
+  const clef = svg("text", {
+    x: isBass ? 136 : 130,
+    y: isBass ? yForStep(6) : yForStep(2),
+    "font-size": isBass ? 108 : 132,
+    "font-family": "Georgia, 'Times New Roman', serif",
+    "dominant-baseline": "middle",
+    "text-anchor": "middle",
+    fill: "#202124"
+  });
+  clef.textContent = isBass ? "𝄢" : "𝄞";
+  staff.append(clef);
 }
 
 function drawLedgerLines(noteX, step) {
