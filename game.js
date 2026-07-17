@@ -150,7 +150,7 @@ function yForStep(step) {
   return 410 - step * 10;
 }
 
-function drawStaff(note, showNote) {
+function drawStaff(note, showNote, emptyState = "sound") {
   staff.replaceChildren();
   staff.append(svg("rect", { x: 0, y: 0, width: 820, height: 680, rx: 18, fill: "#fffdf8" }));
 
@@ -159,14 +159,14 @@ function drawStaff(note, showNote) {
       x: 410, y: 292, "text-anchor": "middle",
       "font-size": 76, "font-weight": 800, fill: "#0f7a7a"
     });
-    icon.textContent = "♪";
+    icon.textContent = emptyState === "idle" ? "Ready" : "♪";
     staff.append(icon);
 
     const text = svg("text", {
       x: 410, y: 356, "text-anchor": "middle",
       "font-size": 28, "font-weight": 800, fill: "#69707a"
     });
-    text.textContent = "听音后在 88 键钢琴上选择";
+    text.textContent = emptyState === "idle" ? "选择设置后，点“开始练习”" : "听音后在 88 键钢琴上选择";
     staff.append(text);
     return;
   }
@@ -327,7 +327,7 @@ function resetSession() {
   message.className = "message";
   message.textContent = "选择设置后，点“开始练习”。";
   questionChip.textContent = "准备开始";
-  drawStaff(null, false);
+  drawStaff(null, false, "idle");
   clearActiveKeys();
   updateStats();
 }

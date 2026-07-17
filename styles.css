@@ -83,7 +83,7 @@ p {
 .stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(80px, 1fr));
-  gap: 8px;
+  gap: 10px;
 }
 
 .stats div,
@@ -100,7 +100,7 @@ p {
 
 .stats div {
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 12px 14px;
 }
 
 .stats span,
@@ -113,7 +113,8 @@ p {
 }
 
 .stats strong {
-  font-size: 1.2rem;
+  font-size: 1.55rem;
+  line-height: 1.05;
 }
 
 .settings {
@@ -280,11 +281,11 @@ p {
 }
 
 .answer-panel {
-  padding: 8px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 10px;
+  gap: 12px;
   min-height: var(--staff-panel-height);
 }
 
@@ -336,7 +337,12 @@ p {
 .controls {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 10px;
+}
+
+.controls button {
+  min-height: 54px;
+  font-size: 1.05rem;
 }
 
 .piano-wrap {
@@ -732,7 +738,15 @@ body.ipad-air .history-list {
   }
 
   .answer-panel .stats div {
-    padding: 6px 8px;
+    padding: 8px 10px;
+  }
+
+  .answer-panel .stats strong {
+    font-size: 1.34rem;
+  }
+
+  .controls button {
+    min-height: 46px;
   }
 
   .piano-wrap,
